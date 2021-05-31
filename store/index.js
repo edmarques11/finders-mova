@@ -1,10 +1,16 @@
 export const state = () => ({
   countries: [],
+  pagination: {
+    currentPage: 1,
+  },
 })
 
 export const mutations = {
   change_countries(state, payload) {
     state.countries = payload
+  },
+  change_pagination(state, payload) {
+    state.pagination = payload
   },
 }
 
