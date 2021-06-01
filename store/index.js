@@ -32,8 +32,10 @@ export const actions = {
   async getAllCountries(context) {
     try {
       const response = await this.$axios.$get('/all')
-      context.commit('change_countries', response)
       context.commit('change_allCountries', response)
+      if (context.state.countries.length === 0) {
+        context.commit('change_countries', response)
+      }
     } catch (error) {
       throw new Error(error)
     }

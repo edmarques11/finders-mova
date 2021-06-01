@@ -2,20 +2,27 @@
   <v-container fluid>
     <v-row v-if="country">
       <v-col cols="5">
-        <v-card class="rounded-0" max-width="443">
+        <v-card class="rounded-0" min-width="264" max-width="443">
           <v-img max-height="258" max-width="443" :src="country.flag"></v-img>
         </v-card>
       </v-col>
 
-      <v-col class="d-flex flex-column justify-space-between">
-        <div>Nome: {{ country.name }}</div>
-        <div>Capital: {{ country.capital }}</div>
-        <div @click="setFilter(country.region)">
-          Região: <NuxtLink to="/">{{ country.region }}</NuxtLink>
-        </div>
-        <div>Sub-região: {{ country.subregion }}</div>
-        <div>População: {{ country.population }}</div>
-        <div>Linguas: {{ formatLanguages }}</div>
+      <v-col>
+        <v-card
+          min-width="264"
+          height="100%"
+          class="rounded-0 pa-0 d-flex flex-column justify-space-between"
+          flat
+        >
+          <div>Nome: {{ country.name }}</div>
+          <div>Capital: {{ country.capital }}</div>
+          <div @click="setFilter(country.region)">
+            Região: <a>{{ country.region }}</a>
+          </div>
+          <div>Sub-região: {{ country.subregion }}</div>
+          <div>População: {{ country.population }}</div>
+          <div>Linguas: {{ formatLanguages }}</div>
+        </v-card>
       </v-col>
     </v-row>
 
@@ -86,11 +93,13 @@ export default {
         throw new Error(error)
       }
 
-      this.$store.commit('change_countries', regionCountries)
       this.$store.commit('change_filter', {
         typeFilter: 'region',
         endpoint: region,
       })
+      this.$store.commit('change_countries', regionCountries)
+
+      this.$router.push('/')
     },
 
     async filterBorders() {

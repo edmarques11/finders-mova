@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row align="center">
-      <v-col class="d-flex p-0" cols="12" sm="4">
+      <v-col class="d-flex ma-0 pr-sm-15 pl-xs-6" cols="12" sm="4">
         <v-select
           v-model="selection1"
           :items="items1"
@@ -9,7 +9,12 @@
         ></v-select>
       </v-col>
 
-      <v-col v-if="selection1" class="d-flex" cols="12" sm="4">
+      <v-col
+        v-if="selection1"
+        class="d-flex ma-0 pl-sm-1 pr-sm-16 pl-xs-6"
+        cols="12"
+        sm="4"
+      >
         <v-select
           v-model="selection2"
           :items="items2"
@@ -19,7 +24,12 @@
         ></v-select>
       </v-col>
 
-      <v-col v-if="selection1" class="d-flex" cols="12" sm="4">
+      <v-col
+        v-if="selection1"
+        class="d-flex ma-0 pl-sm-0 pl-xs-6"
+        cols="12"
+        sm="4"
+      >
         <v-btn :disabled="!selection2" class="mova" @click="search()"
           >Pesquisar</v-btn
         >
