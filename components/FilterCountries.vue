@@ -34,7 +34,7 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      selection1: '',
+      selection1: this.$store.state.filter.typeFilter,
       items1: [
         { text: 'Região', value: 'region' },
         { text: 'Capital', value: 'capital' },
@@ -43,8 +43,8 @@ export default {
         { text: 'Código de Ligação', value: 'callingcode' },
       ],
 
-      selection2: '',
-      items2: [],
+      selection2: this.$store.state.filter.endpoint,
+      items2: [this.$store.state.filter.endpoint],
     }
   },
 

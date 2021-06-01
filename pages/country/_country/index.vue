@@ -10,7 +10,9 @@
       <v-col class="d-flex flex-column justify-space-between">
         <div>Nome: {{ country.name }}</div>
         <div>Capital: {{ country.capital }}</div>
-        <div>Região: {{ country.region }}</div>
+        <div @click="setFilter(country.region)">
+          Região: <NuxtLink to="/">{{ country.region }}</NuxtLink>
+        </div>
         <div>Sub-região: {{ country.subregion }}</div>
         <div>População: {{ country.population }}</div>
         <div>Linguas: {{ formatLanguages }}</div>
@@ -76,14 +78,36 @@ export default {
       }
     },
 
-    filterBorders() {
+    async setFilter(region) {
+      let regionCountries
+      try {
+        regionCountries = await this.$axios.$get(`/region/${region}`)
+      } catch (error) {
+        throw new Error(error)
+      }
+
+      this.$store.commit('change_countries', regionCountries)
+      this.$store.commit('change_filter', {
+        typeFilter: 'region',
+        endpoint: region,
+      })
+    },
+
+    async filterBorders() {
+      let allCountries = []
+      try {
+        allCountries = await this.$axios.$get()
+      } catch (error) {
+        throw new Error(error)
+      }
+
       const borders = this.country.borders
       const countriesBorders = []
       for (const index in borders) {
-        const finderCountry = this.allCountries.findIndex((value) => {
+        const finderCountry = allCountries.findIndex((value) => {
           return value.alpha3Code === borders[index]
         })
-        countriesBorders.push(this.allCountries[finderCountry])
+        countriesBorders.push(allCountries[finderCountry])
       }
       this.$store.commit('change_countries', countriesBorders)
     },

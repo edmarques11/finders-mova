@@ -1,6 +1,10 @@
 export const state = () => ({
   countries: [],
   allCountries: [],
+  filter: {
+    typeFilter: '',
+    endpoint: '',
+  },
   pagination: {
     currentPage: 1,
   },
@@ -13,6 +17,10 @@ export const mutations = {
 
   change_allCountries(state, payload) {
     state.allCountries = payload
+  },
+
+  change_filter(state, payload) {
+    state.filter = payload
   },
 
   change_pagination(state, payload) {

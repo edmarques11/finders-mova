@@ -5,15 +5,11 @@
         <v-img
           max-height="61.66"
           max-width="94"
-          src="./logo_principal.png"
+          src="/logo_principal.png"
         ></v-img>
       </NuxtLink>
       <NuxtLink to="/">
-        <v-img
-          max-height="36"
-          max-width="134"
-          src="./return_button.png"
-        ></v-img>
+        <v-img max-height="36" max-width="134" src="/return_button.png"></v-img>
       </NuxtLink>
     </div>
   </v-app-bar>

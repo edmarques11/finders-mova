@@ -3,7 +3,10 @@
     <v-row cols="12" no-gutters> </v-row>
     <v-row cols="12" no-gutters>
       <v-col v-for="(country, index) in 3" :key="index">
-        <NuxtLink :to="`/country/${countries[countriesPerPage + index].name}`">
+        <NuxtLink
+          v-if="countries[countriesPerPage + index]"
+          :to="`/country/${countries[countriesPerPage + index].name}`"
+        >
           <v-card class="rounded-0" max-width="316">
             <v-img
               v-if="countries[countriesPerPage + index]"
