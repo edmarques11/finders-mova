@@ -98,6 +98,7 @@ export default {
         endpoint: region,
       })
       this.$store.commit('change_countries', regionCountries)
+      this.$store.commit('change_pagination', { currentPage: 1 })
 
       this.$router.push('/')
     },

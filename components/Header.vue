@@ -34,6 +34,8 @@ export default {
     goHome() {
       if (this.$route.path !== '/') {
         this.$store.commit('change_countries', [])
+        this.$store.commit('change_pagination', { currentPage: 1 })
+        this.$store.commit('change_filter', { typeFilter: '', endpoint: '' })
         this.$router.push('/')
       }
     },

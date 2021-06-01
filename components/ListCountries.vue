@@ -2,7 +2,11 @@
   <v-container v-if="countries.length > 0" fluid class="mb-8">
     <v-row cols="12" no-gutters> </v-row>
     <v-row cols="12" no-gutters>
-      <v-col v-for="(country, index) in 3" :key="index" class="mb-4">
+      <v-col
+        v-for="(country, index) in 3"
+        :key="index"
+        class="d-flex flex-column justify-space-around mb-4"
+      >
         <NuxtLink
           v-if="countries[countriesPerPage + index]"
           :to="`/country/${countries[countriesPerPage + index].name}`"
