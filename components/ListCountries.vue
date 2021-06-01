@@ -1,6 +1,9 @@
 <template>
   <v-container v-if="countries.length > 0" fluid>
     <v-row cols="12" no-gutters>
+      <FilterCountries />
+    </v-row>
+    <v-row cols="12" no-gutters>
       <v-col v-for="(country, index) in 3" :key="index"
         ><v-img
           v-if="countries[countriesPerPage + index]"
@@ -14,9 +17,14 @@
 </template>
 
 <script>
+import FilterCountries from '@/components/FilterCountries'
 import { mapState } from 'vuex'
 
 export default {
+  components: {
+    FilterCountries,
+  },
+
   data() {
     return {}
   },

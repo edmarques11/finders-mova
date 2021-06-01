@@ -6,7 +6,9 @@
         <nuxt />
       </v-container>
     </v-main>
-    <Pagination />
+    <div class="pages-footer">
+      <Pagination />
+    </div>
   </v-app>
 </template>
 
@@ -24,3 +26,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.pages-footer {
+  position: relative;
+  bottom: 50px;
+}
+</style>
