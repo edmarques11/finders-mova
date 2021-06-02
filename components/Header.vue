@@ -9,7 +9,7 @@
           src="/logo_principal.png"
         ></v-img>
       </div>
-      <div class="logo-mova" @click="goHome()">
+      <div class="buttons-back" @click="goHome()">
         <v-img
           class="mova-back-big"
           max-height="36"
@@ -59,7 +59,8 @@ export default {
   align-items: center;
 }
 
-.logo-mova {
+.logo-mova,
+.buttons-back {
   cursor: pointer;
 }
 
