@@ -5,6 +5,7 @@
         <v-img
           max-height="61.66"
           max-width="94"
+          alt="logo"
           src="/logo_principal.png"
         ></v-img>
       </div>
@@ -13,12 +14,14 @@
           class="mova-back-big"
           max-height="36"
           max-width="134"
+          alt="back button"
           src="/return_button.png"
         ></v-img>
         <v-img
           class="mova-back-small"
           max-height="24"
           max-width="24"
+          alt="back button"
           src="/keyboard_return.png"
         ></v-img>
       </div>
@@ -28,6 +31,8 @@
 
 <script>
 export default {
+  name: 'Header',
+
   computed: {},
 
   methods: {

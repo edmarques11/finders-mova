@@ -42,6 +42,8 @@
 import { mapState } from 'vuex'
 
 export default {
+  name: 'FilterCountries',
+
   data() {
     return {
       selection1: this.$store.state.filter.typeFilter,
