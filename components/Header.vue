@@ -1,7 +1,7 @@
 <template>
   <v-app-bar height="100px" class="white" app>
     <div class="container-images">
-      <div class="logo-mova" @click="goHome()">
+      <div class="logo-mova" dataBack @click="goHome()">
         <v-img
           max-height="61.66"
           max-width="94"
@@ -9,7 +9,7 @@
           src="/logo_principal.png"
         ></v-img>
       </div>
-      <div class="buttons-back" @click="goHome()">
+      <div class="buttons-back" dataBack @click="goHome()">
         <v-img
           class="mova-back-big"
           max-height="36"
