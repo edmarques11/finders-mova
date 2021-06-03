@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import Header from '@/components/Header.vue'
+import index from '@/pages/index.vue'
 import Vuetify from 'vuetify'
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -24,27 +24,15 @@ const store = new Vuex.Store({
   actions,
 })
 
-describe('Header', () => {
-  const wrapper = mount(Header, {
+describe('index', () => {
+  const wrapper = mount(index, {
     localVue,
     vuetify,
     router,
     store,
   })
 
-  test('Element with logo MOVA and buttons back exists', () => {
+  test('Page index exists', () => {
     expect(wrapper.vm).toBeTruthy()
-    expect(wrapper.find('div.logo-mova').exists()).toBe(true)
-    expect(wrapper.find('div.buttons-back').exists()).toBe(true)
-  })
-
-  test('Test function goHome', async () => {
-    const button = wrapper.findAll('[dataBack]')
-
-    expect(button).toBeTruthy()
-
-    wrapper.vm.$router.push('/about')
-
-    await button.trigger('click')
   })
 })
