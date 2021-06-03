@@ -1,18 +1,17 @@
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount, createLocalVue, RouterLinkStub } from '@vue/test-utils'
 import country from '@/pages/country/_country/index.vue'
 import Vuetify from 'vuetify'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import Axios from 'axios'
 import { state, mutations, actions } from '@/store'
+import $axios from './helpers/api.mock'
 
 Vue.use(Vuetify)
 const vuetify = new Vuetify()
 const localVue = createLocalVue()
 localVue.use(VueRouter)
 localVue.use(Vuex)
-localVue.use(Axios)
 
 const routes = [{ path: '/country/:country' }]
 
@@ -20,10 +19,7 @@ const router = new VueRouter({
   routes,
 })
 
-const $axios = new Axios({
-  baseURL: 'https://restcountries.eu/rest/v2',
-  timeout: 15000,
-})
+localVue.prototype.$axios = $axios
 
 const store = new Vuex.Store({
   state,
@@ -41,19 +37,31 @@ describe('country', () => {
     },
     store,
     $axios,
+    stubs: {
+      NuxtLink: RouterLinkStub,
+    },
   })
-  // wrapper.vm.$route.params.country = 'brasil'
-
-  // wrapper.vm.$router.push({ path: '/country/brasil' })
-
-  // console.log('aquiiiiiiii', wrapper.vm.$route)
 
   test('Page country exists', () => {
     expect(wrapper.vm).toBeTruthy()
   })
 
-  test('Exibe info name', () => {
+  test('Exibe info name about country', () => {
     const divName = wrapper.find('[attr-name]')
-    expect(divName.exists()).toBe(true)
+    const divCapital = wrapper.find('[attr-capital]')
+
+    expect(divName.exists()).toBeTruthy()
+    expect(divName.text()).toBe('Nome: Brazil')
+
+    expect(divCapital.exists()).toBeTruthy()
+    expect(divCapital.text()).toBe('Capital: Brasília')
+  })
+
+  test('Go home with filter region', async () => {
+    const divRegion = wrapper.find('[attr-region]')
+    expect(divRegion.exists()).toBeTruthy()
+
+    await divRegion.trigger('click')
+    expect(wrapper.vm.$route.path).toBe('/')
   })
 })

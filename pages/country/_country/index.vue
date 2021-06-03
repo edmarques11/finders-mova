@@ -14,9 +14,9 @@
           class="rounded-0 pa-0 d-flex flex-column justify-space-between"
           flat
         >
-          <div attr-name="attrName">Nome: {{ country.name }}</div>
-          <div>Capital: {{ country.capital }}</div>
-          <div @click="setFilter(country.region)">
+          <div attr-name>Nome: {{ country.name }}</div>
+          <div attr-capital>Capital: {{ country.capital }}</div>
+          <div attr-region @click="setFilter(country.region)">
             Região: <a>{{ country.region }}</a>
           </div>
           <div>Sub-região: {{ country.subregion }}</div>
@@ -78,7 +78,6 @@ export default {
   methods: {
     async getCountry() {
       try {
-        console.log('aqui misera.....', this.$axios)
         const country = await this.$axios.$get(`/name/${this.countryName}`)
         this.country = country[0]
       } catch (error) {
