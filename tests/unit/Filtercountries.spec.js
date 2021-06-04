@@ -5,7 +5,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import { mutations, actions } from '@/store'
-// import $axios from './helpers/api.mock'
+import $axios from './helpers/api.mock'
 import allCountries from './json/get.all.json'
 
 Vue.use(Vuetify)
@@ -13,6 +13,8 @@ const vuetify = new Vuetify()
 const localVue = createLocalVue()
 localVue.use(VueRouter)
 localVue.use(Vuex)
+
+localVue.prototype.$axios = $axios
 
 const routes = [{ path: '/' }]
 
@@ -44,6 +46,7 @@ describe('FilterCountries', () => {
     vuetify,
     router,
     store,
+    $axios,
     data() {
       return {
         selection1: this.$store.state.filter.typeFilter,
@@ -65,7 +68,39 @@ describe('FilterCountries', () => {
     expect(wrapper.vm).toBeTruthy()
   })
 
-  test('qualquer coisa', () => {
+  test('Filter to language', () => {
     wrapper.vm.$data.selection1 = 'lang'
+    expect(wrapper.vm.$data.selection2).not.toBe([])
+  })
+
+  test('Filter to callingcode', () => {
+    wrapper.vm.$data.selection1 = 'callingcode'
+    expect(wrapper.vm.$data.selection2).not.toBe([])
+  })
+
+  test('Filter to country name', () => {
+    wrapper.vm.$data.selection1 = 'name'
+    expect(wrapper.vm.$data.selection2).not.toBe([])
+  })
+
+  test('Filter to capital', () => {
+    wrapper.vm.$data.selection1 = 'capital'
+    expect(wrapper.vm.$data.selection2).not.toBe([])
+  })
+
+  test('Filter to region', () => {
+    wrapper.vm.$data.selection1 = 'region'
+    expect(wrapper.vm.$data.selection2).not.toBe([])
+  })
+
+  wrapper.vm.$data.selection1 = 'region'
+  wrapper.vm.$data.selection2 = 'americas'
+  test('Click search button', async () => {
+    const button = wrapper.find('.mova')
+    expect(button.exists()).toBeTruthy()
+    expect(button.text()).toBe('Pesquisar')
+
+    await button.trigger('click')
+    await wrapper.vm.$nextTick()
   })
 })
