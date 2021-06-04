@@ -46,15 +46,27 @@ describe('country', () => {
     expect(wrapper.vm).toBeTruthy()
   })
 
-  test('Exibe info name about country', () => {
+  test('Exibe infos about country', () => {
     const divName = wrapper.find('[attr-name]')
     const divCapital = wrapper.find('[attr-capital]')
+    const divSubRegion = wrapper.find('[attr-subregion]')
+    const divPopulation = wrapper.find('[attr-population]')
+    const divLang = wrapper.find('[attr-lang]')
 
     expect(divName.exists()).toBeTruthy()
     expect(divName.text()).toBe('Nome: Brazil')
 
     expect(divCapital.exists()).toBeTruthy()
     expect(divCapital.text()).toBe('Capital: Brasília')
+
+    expect(divSubRegion.exists()).toBeTruthy()
+    expect(divSubRegion.text()).toBe('Sub-região: South America')
+
+    expect(divPopulation.exists()).toBeTruthy()
+    expect(divPopulation.text()).toBe('População: 206135893')
+
+    expect(divLang.exists()).toBeTruthy()
+    expect(divLang.text()).toBe('Linguas: Português')
   })
 
   test('Go home with filter region', async () => {
