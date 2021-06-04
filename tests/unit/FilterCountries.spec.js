@@ -19,94 +19,94 @@ localVue.prototype.$axios = $axios
 const routes = [{ path: '/' }]
 
 const router = new VueRouter({
-  routes,
+    routes,
 })
 
 const state = () => ({
-  countries: [],
-  allCountries,
-  filter: {
-    typeFilter: '',
-    endpoint: '',
-  },
-  pagination: {
-    currentPage: 1,
-  },
+    countries: [],
+    allCountries,
+    filter: {
+        typeFilter: '',
+        endpoint: '',
+    },
+    pagination: {
+        currentPage: 1,
+    },
 })
 
 const store = new Vuex.Store({
-  state,
-  mutations,
-  actions,
+    state,
+    mutations,
+    actions,
 })
 
 describe('FilterCountries', () => {
-  const wrapper = mount(FilterCountries, {
-    localVue,
-    vuetify,
-    router,
-    store,
-    $axios,
-    data() {
-      return {
-        selection1: this.$store.state.filter.typeFilter,
-        items1: [
-          { text: 'Região', value: 'region' },
-          { text: 'Capital', value: 'capital' },
-          { text: 'Língua', value: 'lang' },
-          { text: 'País', value: 'name' },
-          { text: 'Código de Ligação', value: 'callingcode' },
-        ],
+    const wrapper = mount(FilterCountries, {
+        localVue,
+        vuetify,
+        router,
+        store,
+        $axios,
+        data() {
+            return {
+                selection1: this.$store.state.filter.typeFilter,
+                items1: [
+                    { text: 'Região', value: 'region' },
+                    { text: 'Capital', value: 'capital' },
+                    { text: 'Língua', value: 'lang' },
+                    { text: 'País', value: 'name' },
+                    { text: 'Código de Ligação', value: 'callingcode' },
+                ],
 
-        selection2: this.$store.state.filter.endpoint,
-        items2: [this.$store.state.filter.endpoint],
-      }
-    },
-  })
+                selection2: this.$store.state.filter.endpoint,
+                items2: [this.$store.state.filter.endpoint],
+            }
+        },
+    })
 
-  test('FilterCountries exists', () => {
-    expect(wrapper.vm).toBeTruthy()
-  })
+    test('FilterCountries exists', () => {
+        expect(wrapper.vm).toBeTruthy()
+    })
 
-  test('Selects is visible', () => {
-    const selects = wrapper.findAll('div.v-input__slot')
-    expect(selects.at(0).exists()).toBeTruthy()
-    expect(selects.at(1).exists()).toBeTruthy()
-  })
+    test('Selects is visible', () => {
+        const selects = wrapper.findAll('div.v-input__slot')
+        expect(selects.at(0).exists()).toBeTruthy()
+        expect(selects.at(1).exists()).toBeTruthy()
+    })
 
-  test('Filter to language', () => {
-    wrapper.vm.$data.selection1 = 'lang'
-    expect(wrapper.vm.$data.selection2).not.toBe([])
-  })
+    test('Filter to language', () => {
+        wrapper.vm.$data.selection1 = 'lang'
+        expect(wrapper.vm.$data.selection2).not.toBe([])
+    })
 
-  test('Filter to callingcode', () => {
-    wrapper.vm.$data.selection1 = 'callingcode'
-    expect(wrapper.vm.$data.selection2).not.toBe([])
-  })
+    test('Filter to callingcode', () => {
+        wrapper.vm.$data.selection1 = 'callingcode'
+        expect(wrapper.vm.$data.selection2).not.toBe([])
+    })
 
-  test('Filter to country name', () => {
-    wrapper.vm.$data.selection1 = 'name'
-    expect(wrapper.vm.$data.selection2).not.toBe([])
-  })
+    test('Filter to country name', () => {
+        wrapper.vm.$data.selection1 = 'name'
+        expect(wrapper.vm.$data.selection2).not.toBe([])
+    })
 
-  test('Filter to capital', () => {
-    wrapper.vm.$data.selection1 = 'capital'
-    expect(wrapper.vm.$data.selection2).not.toBe([])
-  })
+    test('Filter to capital', () => {
+        wrapper.vm.$data.selection1 = 'capital'
+        expect(wrapper.vm.$data.selection2).not.toBe([])
+    })
 
-  test('Filter to region', () => {
+    test('Filter to region', () => {
+        wrapper.vm.$data.selection1 = 'region'
+        expect(wrapper.vm.$data.selection2).not.toBe([])
+    })
+
     wrapper.vm.$data.selection1 = 'region'
-    expect(wrapper.vm.$data.selection2).not.toBe([])
-  })
+    wrapper.vm.$data.selection2 = 'americas'
+    test('Click search button', async () => {
+        const button = wrapper.find('.mova')
+        expect(button.exists()).toBeTruthy()
+        expect(button.text()).toBe('Pesquisar')
 
-  wrapper.vm.$data.selection1 = 'region'
-  wrapper.vm.$data.selection2 = 'americas'
-  test('Click search button', async () => {
-    const button = wrapper.find('.mova')
-    expect(button.exists()).toBeTruthy()
-    expect(button.text()).toBe('Pesquisar')
-
-    await button.trigger('click')
-    await wrapper.vm.$nextTick()
-  })
+        await button.trigger('click')
+        await wrapper.vm.$nextTick()
+    })
 })

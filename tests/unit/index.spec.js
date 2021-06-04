@@ -15,24 +15,24 @@ localVue.use(Vuex)
 const routes = [{ path: '/' }]
 
 const router = new VueRouter({
-  routes,
+    routes,
 })
 
 const store = new Vuex.Store({
-  state,
-  mutations,
-  actions,
+    state,
+    mutations,
+    actions,
 })
 
 describe('index', () => {
-  const wrapper = mount(index, {
-    localVue,
-    vuetify,
-    router,
-    store,
-  })
+    const wrapper = mount(index, {
+        localVue,
+        vuetify,
+        router,
+        store,
+    })
 
-  test('Page index exists', () => {
-    expect(wrapper.vm).toBeTruthy()
-  })
+    test('Page index exists', () => {
+        expect(wrapper.vm).toBeTruthy()
+    })
 })

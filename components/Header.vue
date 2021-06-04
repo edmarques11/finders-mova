@@ -1,80 +1,83 @@
 <template>
-  <v-app-bar height="100px" class="white" app>
-    <div class="container-images">
-      <div class="logo-mova" dataBack @click="goHome()">
-        <v-img
-          max-height="61.66"
-          max-width="94"
-          alt="logo"
-          src="/logo_principal.png"
-        ></v-img>
-      </div>
-      <div class="buttons-back" dataBack @click="goHome()">
-        <v-img
-          class="mova-back-big"
-          max-height="36"
-          max-width="134"
-          alt="back button"
-          src="/return_button.png"
-        ></v-img>
-        <v-img
-          class="mova-back-small"
-          max-height="24"
-          max-width="24"
-          alt="back button"
-          src="/keyboard_return.png"
-        ></v-img>
-      </div>
-    </div>
-  </v-app-bar>
+    <v-app-bar height="100px" class="white" app>
+        <div class="container-images">
+            <div class="logo-mova" dataBack @click="goHome()">
+                <v-img
+                    max-height="61.66"
+                    max-width="94"
+                    alt="logo"
+                    src="/logo_principal.png"
+                ></v-img>
+            </div>
+            <div class="buttons-back" dataBack @click="goHome()">
+                <v-img
+                    class="mova-back-big"
+                    max-height="36"
+                    max-width="134"
+                    alt="back button"
+                    src="/return_button.png"
+                ></v-img>
+                <v-img
+                    class="mova-back-small"
+                    max-height="24"
+                    max-width="24"
+                    alt="back button"
+                    src="/keyboard_return.png"
+                ></v-img>
+            </div>
+        </div>
+    </v-app-bar>
 </template>
 
 <script>
 export default {
-  name: 'Header',
+    name: 'Header',
 
-  computed: {},
+    computed: {},
 
-  methods: {
-    goHome() {
-      if (this.$route.path !== '/') {
-        this.$store.commit('change_countries', [])
-        this.$store.commit('change_pagination', { currentPage: 1 })
-        this.$store.commit('change_filter', { typeFilter: '', endpoint: '' })
-        this.$router.push('/')
-      }
+    methods: {
+        goHome() {
+            if (this.$route.path !== '/') {
+                this.$store.commit('change_countries', [])
+                this.$store.commit('change_pagination', { currentPage: 1 })
+                this.$store.commit('change_filter', {
+                    typeFilter: '',
+                    endpoint: '',
+                })
+                this.$router.push('/')
+            }
+        },
     },
-  },
 }
 </script>
 
 <style scoped>
 .container-images {
-  width: 100%;
-  padding-left: 30px;
-  padding-right: 51px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 51px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo-mova,
 .buttons-back {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .mova-back-small {
-  display: none;
+    display: none;
 }
 
 @media screen and (max-width: 600px) {
-  .mova-back-big {
-    display: none !important;
-  }
+    .mova-back-big {
+        display: none !important;
+    }
 
-  .mova-back-small {
-    display: block !important;
-  }
+    .mova-back-small {
+        display: block !important;
+    }
 }
 </style>

@@ -16,40 +16,40 @@ localVue.use(Vuex)
 const routes = [{ path: '/' }]
 
 const router = new VueRouter({
-  routes,
+    routes,
 })
 
 const store = new Vuex.Store({
-  state,
-  mutations,
-  actions,
+    state,
+    mutations,
+    actions,
 })
 
 describe('Pagination', () => {
-  const wrapper = mount(Pagination, {
-    localVue,
-    vuetify,
-    router,
-    store,
-    data() {
-      return {
-        page: 1,
-        length: 0,
-      }
-    },
-  })
+    const wrapper = mount(Pagination, {
+        localVue,
+        vuetify,
+        router,
+        store,
+        data() {
+            return {
+                page: 1,
+                length: 0,
+            }
+        },
+    })
 
-  test('Pagination is mounted', () => {
-    expect(wrapper.vm).toBeTruthy()
-  })
+    test('Pagination is mounted', () => {
+        expect(wrapper.vm).toBeTruthy()
+    })
 
-  wrapper.vm.$data.page = 2
-  test('Changed pagination', () => {
-    expect(wrapper.vm.$data.page).toEqual(2)
-  })
+    wrapper.vm.$data.page = 2
+    test('Changed pagination', () => {
+        expect(wrapper.vm.$data.page).toEqual(2)
+    })
 
-  wrapper.vm.$store.state.countries = countries
-  test('Changed countries', () => {
-    expect(wrapper.vm.$data.length).toBe(1)
-  })
+    wrapper.vm.$store.state.countries = countries
+    test('Changed countries', () => {
+        expect(wrapper.vm.$data.length).toBe(1)
+    })
 })

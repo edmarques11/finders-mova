@@ -16,64 +16,64 @@ localVue.use(Vuex)
 const routes = [{ path: '/country/:country' }]
 
 const router = new VueRouter({
-  routes,
+    routes,
 })
 
 localVue.prototype.$axios = $axios
 
 const store = new Vuex.Store({
-  state,
-  mutations,
-  actions,
+    state,
+    mutations,
+    actions,
 })
 
 describe('country', () => {
-  const wrapper = mount(country, {
-    localVue,
-    vuetify,
-    router,
-    data() {
-      return { countryName: 'Brazil' }
-    },
-    store,
-    $axios,
-    stubs: {
-      NuxtLink: RouterLinkStub,
-    },
-  })
+    const wrapper = mount(country, {
+        localVue,
+        vuetify,
+        router,
+        data() {
+            return { countryName: 'Brazil' }
+        },
+        store,
+        $axios,
+        stubs: {
+            NuxtLink: RouterLinkStub,
+        },
+    })
 
-  test('Page country exists', () => {
-    expect(wrapper.vm).toBeTruthy()
-  })
+    test('Page country exists', () => {
+        expect(wrapper.vm).toBeTruthy()
+    })
 
-  test('Exibe infos about country', () => {
-    const divName = wrapper.find('[attr-name]')
-    const divCapital = wrapper.find('[attr-capital]')
-    const divSubRegion = wrapper.find('[attr-subregion]')
-    const divPopulation = wrapper.find('[attr-population]')
-    const divLang = wrapper.find('[attr-lang]')
+    test('Exibe infos about country', () => {
+        const divName = wrapper.find('[attr-name]')
+        const divCapital = wrapper.find('[attr-capital]')
+        const divSubRegion = wrapper.find('[attr-subregion]')
+        const divPopulation = wrapper.find('[attr-population]')
+        const divLang = wrapper.find('[attr-lang]')
 
-    expect(divName.exists()).toBeTruthy()
-    expect(divName.text()).toBe('Nome: Brazil')
+        expect(divName.exists()).toBeTruthy()
+        expect(divName.text()).toBe('Nome: Brazil')
 
-    expect(divCapital.exists()).toBeTruthy()
-    expect(divCapital.text()).toBe('Capital: Brasília')
+        expect(divCapital.exists()).toBeTruthy()
+        expect(divCapital.text()).toBe('Capital: Brasília')
 
-    expect(divSubRegion.exists()).toBeTruthy()
-    expect(divSubRegion.text()).toBe('Sub-região: South America')
+        expect(divSubRegion.exists()).toBeTruthy()
+        expect(divSubRegion.text()).toBe('Sub-região: South America')
 
-    expect(divPopulation.exists()).toBeTruthy()
-    expect(divPopulation.text()).toBe('População: 206135893')
+        expect(divPopulation.exists()).toBeTruthy()
+        expect(divPopulation.text()).toBe('População: 206135893')
 
-    expect(divLang.exists()).toBeTruthy()
-    expect(divLang.text()).toBe('Linguas: Português')
-  })
+        expect(divLang.exists()).toBeTruthy()
+        expect(divLang.text()).toBe('Linguas: Português')
+    })
 
-  test('Go home with filter region', async () => {
-    const divRegion = wrapper.find('[attr-region]')
-    expect(divRegion.exists()).toBeTruthy()
+    test('Go home with filter region', async () => {
+        const divRegion = wrapper.find('[attr-region]')
+        expect(divRegion.exists()).toBeTruthy()
 
-    await divRegion.trigger('click')
-    expect(wrapper.vm.$route.path).toBe('/')
-  })
+        await divRegion.trigger('click')
+        expect(wrapper.vm.$route.path).toBe('/')
+    })
 })

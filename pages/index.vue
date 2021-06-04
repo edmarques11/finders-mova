@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <FilterCountries />
-    <ListCountries />
-  </div>
+    <div>
+        <FilterCountries />
+        <ListCountries />
+    </div>
 </template>
 
 <script>
@@ -11,21 +11,21 @@ import FilterCountries from '@/components/FilterCountries'
 import { mapActions } from 'vuex'
 
 export default {
-  components: {
-    ListCountries,
-    FilterCountries,
-  },
+    components: {
+        ListCountries,
+        FilterCountries,
+    },
 
-  data() {
-    return {}
-  },
+    data() {
+        return {}
+    },
 
-  beforeMount() {
-    this.getAllCountries()
-  },
+    beforeMount() {
+        this.getAllCountries()
+    },
 
-  methods: {
-    ...mapActions(['getAllCountries']),
-  },
+    methods: {
+        ...mapActions(['getAllCountries']),
+    },
 }
 </script>
