@@ -68,6 +68,12 @@ describe('FilterCountries', () => {
     expect(wrapper.vm).toBeTruthy()
   })
 
+  test('Selects is visible', () => {
+    const selects = wrapper.findAll('div.v-input__slot')
+    expect(selects.at(0).exists()).toBeTruthy()
+    expect(selects.at(1).exists()).toBeTruthy()
+  })
+
   test('Filter to language', () => {
     wrapper.vm.$data.selection1 = 'lang'
     expect(wrapper.vm.$data.selection2).not.toBe([])
