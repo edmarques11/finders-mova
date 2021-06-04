@@ -5,7 +5,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import { state, mutations, actions } from '@/store'
-import $axios from './helpers/api.mock'
+import $axios from '../../helpers/api.mock'
 
 Vue.use(Vuetify)
 const vuetify = new Vuetify()
@@ -19,6 +19,7 @@ const router = new VueRouter({
     routes,
 })
 
+$axios.jsonOverwritesPath = '../../json/overwrites/country/success'
 localVue.prototype.$axios = $axios
 
 const store = new Vuex.Store({
@@ -75,5 +76,11 @@ describe('country', () => {
 
         await divRegion.trigger('click')
         expect(wrapper.vm.$route.path).toBe('/')
+    })
+
+    test('Errors at requests', () => {
+        wrapper.vm.$data.countryName = undefined
+        wrapper.vm.getCountry()
+        wrapper.vm.setFilter()
     })
 })

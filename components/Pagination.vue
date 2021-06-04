@@ -27,7 +27,7 @@ export default {
 
     watch: {
         countries() {
-            this.length = Math.trunc(this.countries.length / 3) + 1
+            this.length = Math.trunc(this.countries.length / 9) + 1
         },
 
         page() {

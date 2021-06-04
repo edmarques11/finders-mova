@@ -29,9 +29,13 @@
                     <div attr-region @click="setFilter(country.region)">
                         Região: <a>{{ country.region }}</a>
                     </div>
-                    <div>Sub-região: {{ country.subregion }}</div>
-                    <div>População: {{ country.population }}</div>
-                    <div>Linguas: {{ formatLanguages }}</div>
+                    <div attr-subregion>
+                        Sub-região: {{ country.subregion }}
+                    </div>
+                    <div attr-population>
+                        População: {{ country.population }}
+                    </div>
+                    <div attr-lang>Linguas: {{ formatLanguages }}</div>
                 </v-card>
             </v-col>
         </v-row>

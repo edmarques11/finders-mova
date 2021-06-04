@@ -3,9 +3,11 @@
         <v-row cols="12" no-gutters> </v-row>
         <v-row cols="12" no-gutters>
             <v-col
-                v-for="(country, index) in 3"
+                v-for="(country, index) in 9"
                 :key="index"
                 class="d-flex flex-column justify-space-around mb-4"
+                xl="9"
+                sm="4"
             >
                 <NuxtLink
                     v-if="countries[countriesPerPage + index]"
@@ -39,7 +41,7 @@ export default {
         ...mapState(['countries', 'pagination']),
 
         countriesPerPage() {
-            return (this.pagination.currentPage - 1) * 3
+            return (this.pagination.currentPage - 1) * 9
         },
     },
 }

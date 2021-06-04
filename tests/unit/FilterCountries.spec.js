@@ -109,4 +109,10 @@ describe('FilterCountries', () => {
         await button.trigger('click')
         await wrapper.vm.$nextTick()
     })
+
+    test('Errors at requests', () => {
+        wrapper.vm.$data.selection1 = null
+        wrapper.vm.$data.selection2 = undefined
+        wrapper.vm.search()
+    })
 })
