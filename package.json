@@ -11,7 +11,8 @@
         "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
         "lint": "npm run lint:js && npm run lint:style",
         "test": "jest",
-        "test:watch": "jest --watch"
+        "test:watch": "jest --watch",
+        "heroku-postbuild": "npm run build"
     },
     "lint-staged": {
         "*.{js,vue}": "eslint",
